@@ -1,4 +1,4 @@
-/*==== GLOBAL ====*/
+/*==== GLOBAL =====================================================*/
 :root{
     --dark-blue: color: #363f5f;
 }
@@ -7,16 +7,31 @@
     padding: 0;
     box-sizing: border-box;
 }
+html{
+    font-size: 93.75%;
+}
 body {
 background: #f0f2f5;
  font-family: 'Poppins','sans-serif';
+}
+.sr-only{
+    position: absolute;
+    width:1px;
+    height: 1px;
+    border: solid 1px red;
+    padding: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space:nowrap;
+    border-width: 0;
+
 }
 .container {
     width: min(90vw,800px);
 
     margin: auto;
 }
-/* ====== HEADER =====*/
+/* ====== HEADER =============================*/
 header{
     background: #2D4A22;
     padding: 2rem 0 10rem;
@@ -26,14 +41,29 @@ header{
     color: #fff;
     font-weight: 100;
 }
-/*====Titles====*/
+.logo span{
+    color:#49AA26;
+}
+/*====Titles===================================*/
 h2{
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
     color: var(--dark-blue);
     font-weight: normal;
 }
-/*==== Balance ====*/
+/*====Links and buttons==========================*/
+a{
+    color:#3eb413; 
+    text-decoration: none;
+}
+a:hover{
+    color: #5df716;
+}
+.button.new{
+    display: inline-block;
+ margin-bottom: .8em;
+}
+/*==== Balance ================================*/
 .balance{
     margin-top: -6rem;
 }
@@ -41,7 +71,7 @@ h2{
     color: white;
     margin-top:0;
 }
-/*====CARDS====*/
+/*====CARDS==================================*/
 .card{
     background:white;
     padding: 1.5rem 2rem;
@@ -51,6 +81,9 @@ h2{
 .card h3 {
     font-weight: normal;;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .card p{
     font-size: 2rem;
@@ -63,9 +96,16 @@ h2{
 
 }
 /*==TABLES==*/
+.trnasaction{
+    display: block;
+    width: 100%;
+    overflow-x:auto;
+
+}
 .data-table{
     width: 100%;
     border-spacing : 0 0.5rem;
+    color: #969cb3;
 }
 table th{
     background: white;
@@ -86,8 +126,13 @@ table tr:hover{
 }
 table thead tr th:first-child,
 table tbody tr td:first-child{
-    border-radius: 0.25rem 0 0 0.5rem;
+    border-radius: 0.35rem 0 0 0.25rem;
 }
+table thead tr th:last-child,
+table tbody tr td:last-child{
+    border-radius: 0 0.35rem 0.35rem 0;
+}
+
 td.description{
     color: var(--dark-blue);
 }
@@ -95,10 +140,21 @@ td.income{
     color:#0e8845;
 }
 td.expense{
-    color: rgb(241, 2, 2)
+    color: rgb(218, 28, 28)
 }
 footer{
     text-align:center;
     padding: 4rem 0 2rem;
     color: var(--dark-blue);
+}
+/*====RESPONSIVE==========================================*/
+@media (min-width: 800px){
+    html{
+            font-size: 87.5%;
+    }
+    .balance{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:2rem;
+    }
 }
