@@ -1,4 +1,4 @@
-const Modal = {
+/*const Modal = {
     open(){
         //Abrir modal
         //Adicionar a class active ao modal
@@ -14,7 +14,13 @@ const Modal = {
         .classList
         .remove('active')
     }
+}*/
+var modal = document.getElementById("modal-button")
+
+function toogle() {
+    document.querySelector('.modal-overlay').classList.toggle('active')
 }
+
 const Storage = {
     get() {
         return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
@@ -28,7 +34,7 @@ const Storage = {
 const Transaction = {
     all: Storage.get(),
 
-    add(transaction){
+    add(transaction) {
         Transaction.all.push(transaction)
 
         App.reload()
@@ -43,7 +49,7 @@ const Transaction = {
     incomes() {
         let income = 0;
         Transaction.all.forEach(transaction => {
-            if( transaction.amount > 0 ) {
+            if (transaction.amount > 0) {
                 income += transaction.amount;
             }
         })
@@ -53,7 +59,7 @@ const Transaction = {
     expenses() {
         let expense = 0;
         Transaction.all.forEach(transaction => {
-            if( transaction.amount < 0 ) {
+            if (transaction.amount < 0) {
                 expense += transaction.amount;
             }
         })
@@ -65,6 +71,7 @@ const Transaction = {
     }
 }
 
+
 const DOM = {
     transactionsContainer: document.querySelector('#data-table tbody'),
 
@@ -74,7 +81,7 @@ const DOM = {
         tr.dataset.index = index
 
         DOM.transactionsContainer.appendChild(tr)
-        console.log(tr)
+
     },
 
     innerHTMLTransaction(transaction, index) {
@@ -95,15 +102,13 @@ const DOM = {
     },
 
     updateBalance() {
+        document.getElementById('incomeDisplay')
+        document.innerHTML = Utils.formatCurrency(Transaction.incomes())
+        document.getElementById('expenseDisplay')
+        document.innerHTML = Utils.formatCurrency(Transaction.expenses())
         document
-            .getElementById('incomeDisplay')
-            .innerHTML = Utils.formatCurrency(Transaction.incomes())
-        document
-            .getElementById('expenseDisplay')
-            .innerHTML = Utils.formatCurrency(Transaction.expenses())
-        document
-            .getElementById('totalDisplay')
-            .innerHTML = Utils.formatCurrency(Transaction.total())
+        document.getElementById('totalDisplay')
+        document.innerHTML = Utils.formatCurrency(Transaction.total())
     },
 
     clearTransactions() {
@@ -112,9 +117,9 @@ const DOM = {
 }
 
 const Utils = {
-    formatAmount(value){
+    formatAmount(value) {
         value = Number(value.replace(/\,\./g, "")) * 100
-        
+
         return value
     },
 
@@ -135,7 +140,7 @@ const Utils = {
             currency: "BRL"
         })
 
-       return signal + value
+        return signal + value
     }
 }
 
@@ -154,17 +159,18 @@ const Form = {
 
     validateFields() {
         const { description, amount, date } = Form.getValues()
-        
-        if( description.trim() === "" || 
-            amount.trim() === "" || 
-            date.trim() === "" ) {
-                throw new Error("Por favor, preencha todos os campos")
+        console.log(description);
+
+        if (description.trim() === "" ||
+            amount.trim() === "" ||
+            date.trim() === "") {
+            throw new Error("Por favor, preencha todos os campos")
         }
     },
 
     formatValues() {
         let { description, amount, date } = Form.getValues()
-        
+
         amount = Utils.formatAmount(amount)
 
         date = Utils.formatDate(date)
@@ -200,7 +206,7 @@ const Form = {
 const App = {
     init() {
         Transaction.all.forEach(DOM.addTransaction)
-        
+
         DOM.updateBalance()
 
         Storage.set(Transaction.all)

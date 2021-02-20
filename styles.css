@@ -117,11 +117,11 @@ button:hover {
 }
 
 /*==== Balance ================================*/
-.balance {
+#balance {
     margin-top: -6rem;
 }
 
-.balance h2 {
+#balance h2 {
     color: white;
     margin-top: 0;
 }
@@ -158,14 +158,14 @@ button:hover {
 }
 
 /*==TABLES==*/
-.trnasaction {
+.transaction {
     display: block;
     width: 100%;
     overflow-x: auto;
 
 }
 
-.data-table {
+#data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
     color: #969cb3;
@@ -220,6 +220,8 @@ footer {
     text-align: center;
     padding: 4rem 0 2rem;
     color: var(--dark-blue);
+    opacity: 0.6;
+    
 }
 
 /*====MODAL==============================================*/
@@ -276,7 +278,7 @@ footer {
 }
 
 .input-group small {
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 .input-group.actions {
@@ -296,7 +298,7 @@ footer {
         font-size: 87.5%;
     }
 
-    .balance {
+    #balance {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
