@@ -37,6 +37,9 @@ body {
 
     margin: auto;
 }
+.minus {
+    cursor: pointer;
+}
 
 /* ====== HEADER =============================*/
 header {
