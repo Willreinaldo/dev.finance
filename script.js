@@ -101,20 +101,21 @@ const DOM = {
         return html
     },
 
-    updateBalance() {
-        document.getElementById('incomeDisplay')
-        document.innerHTML = Utils.formatCurrency(Transaction.incomes())
-        document.getElementById('expenseDisplay')
-        document.innerHTML = Utils.formatCurrency(Transaction.expenses())
-        document
-        document.getElementById('totalDisplay')
-        document.innerHTML = Utils.formatCurrency(Transaction.total())
-    },
+    
+  updateBalance() {
+    const expense = document.querySelector('.expenseDisplay');
+    const income = document.querySelector('.incomeDisplay');
+    const total = document.querySelector('.totalDisplay');
 
-    clearTransactions() {
-        DOM.transactionsContainer.innerHTML = ""
-    }
-}
+    expense.innerText = Utils.formatCurrency(Transaction.expenses());
+    income.innerText = Utils.formatCurrency(Transaction.incomes());
+    total.innerText = Utils.formatCurrency(Transaction.total());
+  },
+
+  clearTransaction() {
+    this.transactionsContainer.innerHTML = '';
+  },
+};
 
 const Utils = {
     formatAmount(value) {
